@@ -48,7 +48,7 @@ use yii\helpers\Html;
                 <p class="copyright">可按地区、行业搜索，非爬虫，无需维护，数据自动更新，电销利器</p>
                 <br/>
                 <br/>
-                <form class="form-inline validate signup" action="" method="get" role="form">
+                <form class="form-inline validate signup" role="form">
                     <div class="form-group">
                         <div id="province-box" class="input-group">
                             <select id="province" class="form-control" style="width: 180px">
@@ -64,7 +64,7 @@ use yii\helpers\Html;
                             <select id="city" class="form-control" style="width: 180px">
                                 <?php
                                     foreach ($cityArray as $key=>$city){
-                                        echo "<option value='{$city['REGION_ID']}'>{$city['REGION_NAME']}</option>";
+                                        echo "<option value='{$city['REGION_CODE']}'>{$city['REGION_NAME']}</option>";
                                     }
                                 ?>
                             </select>
@@ -82,7 +82,7 @@ use yii\helpers\Html;
                         <br/>
                         <div id="hy-box"  >
                             <select id="hy" class="form-control" style="width: 180px">
-                                <option value=''>查询所有</option>
+                                <option value='null'>查询所有</option>
                                 <?php
                                     foreach ($hyArray as $key=>$hy){
                                         echo "<option value='{$hy['newtype']}'>{$hy['name']}</option>";
@@ -91,7 +91,7 @@ use yii\helpers\Html;
                             </select>
                         </div>
                         <br/>
-                        <input type="submit" name="subscribe" value="Get notified!" class="btn btn-theme">
+                        <input type="submit" value="GO!" id="submit" class="btn btn-theme" style="width: 180px" >
                     </div>
                 </form>
                 <br/>
@@ -123,22 +123,8 @@ use yii\helpers\Html;
 
     $(document).ready( function () {
         $('#wrapper').height($(document).height());
-        var $form = $('form');
-
-        if ( $form.length > 0 ) {
-            $('form input[type="submit"]').bind('click', function ( event ) {
-                if ( event ) event.preventDefault();
-                // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
-                if ( $form.validate() ) { register($form); }
-            });
-        }
     });
 
-    function appendResult(userText , className, iconClass){
-        var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
-        $('body').append(resultHTML);
-        $('.result').delay(10000).fadeOut('1000');
-    }
 
 
     $('#province').click(function () {
@@ -154,11 +140,11 @@ use yii\helpers\Html;
                 data = JSON.parse(data);
                 data = data.data;
                 for (var i = 0; i < data.length; i++) {
-                    $("#city").append("<option value='"+data[i]['type_newtype']+"'>"+data[i]['REGION_NAME']+"</option>")
+                    $("#city").append("<option value='"+data[i]['REGION_CODE']+"'>"+data[i]['REGION_NAME']+"</option>")
                 }
             }
         });
-    })
+    });
 
     $('#type').click(function () {
         var typeId=$(this).children('option:selected').val();
@@ -178,6 +164,18 @@ use yii\helpers\Html;
                 }
             }
         });
+    })
+
+    $('#submit').click(function (e) {
+        e.preventDefault();
+        var provinceId=$('#province').children('option:selected').val();
+        var cityId=$('#city').children('option:selected').val();
+        var typeId=$('#type').children('option:selected').val();
+        var hyId=$('#hy').children('option:selected').val();
+        var url = '<?= \yii\helpers\Url::to(['show/index']) ?>'+'&cityId='+cityId+'&typeId='+typeId+'&hyId='+hyId+'&page=1';
+        console.log(url)
+
+         window.location.href = url
     })
 </script>
 
