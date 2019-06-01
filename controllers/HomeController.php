@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $id = $_GET['id'];
         $cityArray = Region::find()->where(['PARENT_ID'=>$id])->asArray()->all();
-        return json_encode(['code'=> 200 , 'data' => $cityArray]);
+        return   json_encode(['code'=> 200 , 'data' => $cityArray]);
     }
 
     public function actionGethy()

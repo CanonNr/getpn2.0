@@ -173,9 +173,7 @@ use yii\helpers\Html;
         var typeId=$('#type').children('option:selected').val();
         var hyId=$('#hy').children('option:selected').val();
         var url = '<?= \yii\helpers\Url::to(['show/index']) ?>'+'&cityId='+cityId+'&typeId='+typeId+'&hyId='+hyId+'&page=1';
-        console.log(url)
-
-         window.location.href = url
+        window.location.href = url
     })
 </script>
 
