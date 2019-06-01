@@ -10,6 +10,34 @@ use yii\helpers\Html;
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
     <?=Html::cssFile('@web/static/assets/css/table-style.css')?>
+    <style>
+
+        DIV.jogger {
+            PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 7px;
+            PADDING-TOP: 2px; FONT-FAMILY: "Lucida Sans Unicode",
+        "Lucida Grande", LucidaGrande, "Lucida Sans", Geneva, Verdana, sans-serif
+        }
+        DIV.jogger A {
+            PADDING-RIGHT: 0.64em; PADDING-LEFT: 0.64em; PADDING-BOTTOM: 0.43em;
+            MARGIN: 2px; COLOR: #fff; PADDING-TOP: 0.5em;
+            BACKGROUND-COLOR: #ee4e4e; TEXT-DECORATION: none
+        }
+        DIV.jogger A:hover {
+            PADDING-RIGHT: 0.64em; PADDING-LEFT: 0.64em; PADDING-BOTTOM: 0.43em;
+            MARGIN: 2px; COLOR: #fff; PADDING-TOP: 0.5em; BACKGROUND-COLOR: #de1818
+        }
+        DIV.jogger A:active {
+            PADDING-RIGHT: 0.64em; PADDING-LEFT: 0.64em; PADDING-BOTTOM: 0.43em;
+            MARGIN: 2px; COLOR: #fff; PADDING-TOP: 0.5em; BACKGROUND-COLOR: #de1818
+        }
+        DIV.jogger SPAN.current {
+            PADDING-RIGHT: 0.64em; PADDING-LEFT: 0.64em; PADDING-BOTTOM: 0.43em;
+            MARGIN: 2px; COLOR: #6d643c; PADDING-TOP: 0.5em; BACKGROUND-COLOR: #f6efcc
+        }
+        DIV.jogger SPAN.disabled {
+            DISPLAY: none
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -88,20 +116,30 @@ use yii\helpers\Html;
             </tbody>
         </table>
     </div>
+    <div class="jogger" style="float: right">
+        <?php
+            $maxpage = ceil($result['count']/50);
+            echo $maxpage;
+        ?>
+
+<!--            <span class="current">1</span>-->
+<!--            <span class="disabled">&lt; </span>-->
+
+
+        <?php
+            for ($i=1 ;$i<=$maxpage+1; $i++){
+                if (if($_GET['page'] == 1){
+
+                }
+
+                #echo "<span class=\"current\">$i</span>";
+                echo "<a href=\"#?page=2\">$i</a>"
+            }
+        ?>
+
+    </div>
 </div>
-<div class="jogger">
-    <span class="disabled">&lt; </span>
-    <span class="current">1</span>
-    <a href="#?page=2">2</a>
-    <a href="#?page=3">3</a>
-    <a href="#?page=4">4</a>
-    <a href="#?page=5">5</a>
-    <a href="#?page=6">6</a>
-    <a href="#?page=7">7</a>...
-    <a href="#?page=199">199</a>
-    <a href="#?page=200">200</a>
-    <a href="#?page=2">
-        &gt; </a></div>
+
 
 </body>
 </html>
@@ -109,7 +147,6 @@ use yii\helpers\Html;
 <?=Html::jsFile('@web/static/layer/layer.js')?>
 <script>
 
-    layer.msg('hello');
 
 
 </script>
