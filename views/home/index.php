@@ -44,7 +44,7 @@ use yii\helpers\Html;
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <br/>
                 <br/>
-                <h2 class="subtitle">电话号码全国抓取V2.0</h2>
+                <h2 class="subtitle">电话号码全国抓取</h2>
                 <p class="copyright">可按地区、行业搜索，非爬虫，无需维护，数据自动更新，电销利器</p>
                 <br/>
                 <br/>
