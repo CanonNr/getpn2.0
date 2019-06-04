@@ -20,6 +20,6 @@ class ShowController extends Controller
         if(!isset($page))  $page = 1;
         $data = file_get_contents("http://restapi.amap.com/v3/place/text?parameters&key=f38ab40b387c97c182caa1c4bb96c08e&types={$typeId}&city={$cityId}&offset=50&page={$page}");
         $result = json_decode($data,true);
-        return $this->render('index',compact('result'));
+        return $this->render('index',compact('result','page'));
     }
 }

@@ -115,29 +115,34 @@ use yii\helpers\Html;
             ?>
             </tbody>
         </table>
-    </div>
-    <div class="jogger" style="float: right">
-        <?php
+
+        <div class="jogger" style="float: right;margin: 30px">
+            <?php
             $maxpage = ceil($result['count']/50);
-            echo $maxpage;
-        ?>
-
-<!--            <span class="current">1</span>-->
-<!--            <span class="disabled">&lt; </span>-->
+            ?>
 
 
-        <?php
-            for ($i=1 ;$i<=$maxpage+1; $i++){
-                if (if($_GET['page'] == 1){
 
-                }
+            <span class=""> 第 <?= $page ?>页&nbsp;/&nbsp;共 <?= $maxpage ?>页</span>
 
-                #echo "<span class=\"current\">$i</span>";
-                echo "<a href=\"#?page=2\">$i</a>"
+            <?php
+            if ($page > 1) {
+            ?>
+                <a href="javascript:void(0)" onclick="replaceParamVal('page',<?= ($page-1) ?>)">上一页</a>
+            <?php
             }
-        ?>
+            ?>
+            <?php
+            if ($page < $maxpage) {
+            ?>
+                <a href="javascript:void(0)" onclick="replaceParamVal('page',<?= ($page+1) ?>)">下一页</a>
+            <?php
+            }
+            ?>
 
+        </div>
     </div>
+
 </div>
 
 
@@ -146,7 +151,14 @@ use yii\helpers\Html;
 <script src="./static/assets/js/jquery-1.8.3.min.js"></script>
 <?=Html::jsFile('@web/static/layer/layer.js')?>
 <script>
-
-
+    $page = <?= $page ?>;
+    console.log($page);
+    function replaceParamVal(paramName,replaceWith) {
+        var oUrl = this.location.href.toString();
+        var re=eval('/('+ paramName+'=)([^&]*)/gi');
+        var nUrl = oUrl.replace(re,paramName+'='+replaceWith);
+        this.location = nUrl;
+        window.location.href=nUrl
+    }
 
 </script>
