@@ -98,14 +98,14 @@ use yii\helpers\Html;
             </div>
             <div class="col-sm-12 align-center">
                 <ul class="social-network social-circle">
-                    <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <li>
+                        <a href="https://github.com/canon1014" class="icoGit" title="Github"><i class="fa fa-github"></i></a>
                     </li>
-                    <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a>
+
+                    <li>
+                        <a href="https://weibo.com/u/1725329581" class="icoweibo" title="weibo"><i class="fa fa-weibo"></i></a>
                     </li>
-                    <li><a href="#" class="icoGit" title="Github"><i class="fa fa-github"></i></a>
-                    </li>
-                    <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                    </li>
+
                 </ul>
             </div>
         </div>

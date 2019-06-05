@@ -12,7 +12,7 @@ class ShowController extends Controller
     {
 
         if (!isset($_GET['cityId']) || !isset($_GET['typeId'])) return $this->render('error',['msg'=>'缺少必要参数，请重新选择搜索条件']);
-        if ( empty($_GET['cityId']) ||  gempty($_GET['typeId'])) return $this->render('error',['msg'=>'缺少必要参数，请重新选择搜索条件']);
+        if ( empty($_GET['cityId']) ||  empty($_GET['typeId'])) return $this->render('error',['msg'=>'缺少必要参数，请重新选择搜索条件']);
         $cityId = $_GET['cityId'];
         $typeId = $_GET['typeId'];
         $hyId = $_GET['hyId'];
